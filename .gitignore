@@ -1,0 +1,28 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+
+# Log file
+*.log
+
+# Gradle
+bin/
+build/
+.gradle/
+.gradletasknamecache
+gradle-app.setting
+!gradle-wrapper.jar
+
+# Intellij
+out/
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
+
+# OSX
+.DS_Store
