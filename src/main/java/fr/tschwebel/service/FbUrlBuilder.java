@@ -1,4 +1,4 @@
-package fr.tschwebel.domain;
+package fr.tschwebel.service;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -7,10 +7,13 @@ import java.util.TimeZone;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class FbUrl {
+public class FbUrlBuilder {
 
-    // TODO should not be static
+    // TODO inject
+    // get async_get_token from view-source:https://www.facebook.com/events/birthdays/
     public static final String ACCESS_TOKEN = "";
+
+    public static final String MONTHLY_BIRTHDAYS_URL_FORMAT = "https://www.facebook.com/async/birthdays/?date=%d&__a=1&fb_dtsg_ag=%s";
 
     public static final int MS_TO_SECOND = 1000;
 
@@ -20,19 +23,17 @@ public class FbUrl {
             Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("PST")); // keeps it immutable
             calendar.add(Calendar.MONTH, i);
             return calendar;
-        }).collect(Collectors.toUnmodifiableMap(FbUrl::getMonth, FbUrl::formatUrl));
+        }).collect(Collectors.toUnmodifiableMap(FbUrlBuilder::getMonth, FbUrlBuilder::formatUrl));
 
         return monthlyTimestamp;
     }
 
-    static String getMonth(Calendar cal) {
+    public static String getMonth(Calendar cal) {
         return new SimpleDateFormat("MMMM")
                 .format(cal.getTime());
     }
 
     private static String formatUrl(Calendar cal) {
-        String formatURL = "https://www.facebook.com/async/birthdays/?date=%d&__a=1&fb_dtsg_ag=%s";
-
-        return String.format(formatURL, cal.getTimeInMillis() / MS_TO_SECOND, ACCESS_TOKEN);
+        return String.format(MONTHLY_BIRTHDAYS_URL_FORMAT, cal.getTimeInMillis() / MS_TO_SECOND, ACCESS_TOKEN);
     }
 }

@@ -1,11 +1,14 @@
 Facebook Birthday Exporter
 ============
 
-Export Facebook Friend Birthdays to Calendar events.
+Export Facebook Friend Birthdays to Google Calendar events.
 
-
-Stack
+Playground
 ----
 - Gradle
 - Java 15
 - Undertow
+
+Prerequisites
+----
+Logged in Facebook and Google Calendar.

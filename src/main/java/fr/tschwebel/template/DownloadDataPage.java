@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import fr.tschwebel.domain.FbUrl;
+import fr.tschwebel.service.FbUrlBuilder;
 
-public class DataPage implements HtmlTemplate {
+public class DownloadDataPage implements HtmlTemplate {
 
     static List<String> toElementList(Map<String, String> monthToUrl) {
         return monthToUrl.entrySet().stream()
@@ -15,11 +15,12 @@ public class DataPage implements HtmlTemplate {
     }
 
     public String generateHTML() {
-        Map<String, String> monthToUrl = FbUrl.generateURLs();
+        Map<String, String> monthToUrl = FbUrlBuilder.generateURLs();
+
         return """
                <html>
                    <body>
-                       <p>Download each month and save it with .js</p>
+                       <p>Download each month and save it with .js within in your project /src/main/resources/birthdays/</p>
                        %s
                    </body>
                </html>

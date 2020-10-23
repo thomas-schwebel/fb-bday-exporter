@@ -7,12 +7,8 @@ public class HtmlTag {
 
     static String href(String text, String url) {
         return """
-                <a href="%s" download="%s.js">%s</a>
-                """
-                .formatted(
-                        url,
-                        text,
-                        text);
+               <a href="%s">%s</a>"""
+               .formatted(url, text, text);
     }
 
     static String list(List<String> elements) {
@@ -22,9 +18,8 @@ public class HtmlTag {
 
         return """
                <ul>
-                  %s
-               </ul>
-                """
-                .formatted(String.join("", htmlListElements));
+                   %s
+               </ul>"""
+               .formatted(String.join("\n    ", htmlListElements));
     }
 }

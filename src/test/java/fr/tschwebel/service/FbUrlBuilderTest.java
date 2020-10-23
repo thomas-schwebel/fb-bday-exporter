@@ -1,20 +1,19 @@
-package fr.tschwebel.domain;
+package fr.tschwebel.service;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
-class FbUrlTest {
+class FbUrlBuilderTest {
 
     @Test
     void getMonth() {
         Calendar cal = Calendar.getInstance();
         cal.setTime(new GregorianCalendar(2014, Calendar.SEPTEMBER, 11).getTime());
 
-        assertEquals("September", FbUrl.getMonth(cal));
+        assertEquals("September", FbUrlBuilder.getMonth(cal));
     }
 }
